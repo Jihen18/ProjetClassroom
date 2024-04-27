@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+.singleDiv{
+  margin-top: 30px;
+}
+.singleDiv :hover {
+    
+  border-color: #292C6D;
+
+}
+.formDiv{
+  
+  margin-left: 950px;
+  margin-right: 50px;
+}
+
+</style>
+<br>
+	<center>
+		<h1>La liste des matieres</h1>
+	</center>
+  <br>
+<div class="formDiv">
+  {{ form_start(formlistrub) }}
+<div class="form-row align-items-end" >
+<div class="col"><b>
+ {{ form_row(formlistrub.Nom) }}</b>
+</div>
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button  type="submit" class="btn btn-secondary" style="margin-top: 10px;" >Rechercher</button>
+
+ </div>
+</div>
+</div>
+{{ form_end(formlistrub) }}
+    <div class="container">
+    <div class="row">
+     	
+			{% for matiere in matieres %}
+            
+            
+            <div class="col-lg-4 singleDiv" >
+            <div class="card mainCard" style="width: 18rem;">
+            <img src="https://www.a7la-home.com/wp-content/uploads/2020/04/google-classroom_935adec67b324b146ff212ec4c69054f.jpg" class="card-img-top" alt="...">
+				  <div class="card-body">
+    <h5 class="card-title">{{matiere.nom}}</h5>
+    <p class="card-text">{{matiere.description}}</p>
+               <p><a href="{{path('affiche_travaux',{'id':matiere.id})}}" >Afficher les travaux</a></p>
+
+   {% if is_granted('ROLE_ADMIN')%}
+    <p><a href="{{path('modif',{'id':matiere.id})}}" >Modifier </a></p>
+
+
+        <p><a href="{{path('newcategorie',{'id':matiere.id})}}" >Ajouter une catégorie</a></p>
+       
+        
+
+    
+ {%elseif is_granted('ROLE_TEACHER')  %}
+      <p><a href="{{path('newtravail',{'id':matiere.id})}}" >Déposer un travail</a></p>
+      
+
+
+      
+      {%endif%}
+    <a href="{{path('affiche_categorie',{'id':matiere.id})}}" class="btn btn-primary">Acceder au cours</a>
+   
+  </div>
+   </div>
+   </div>
+   
+			{% endfor %}
+		</div>
+	
+{% endblock %}
+
+

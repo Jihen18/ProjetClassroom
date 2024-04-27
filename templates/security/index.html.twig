@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+.mainDiv{
+
+	padding: 40px 70px;
+}
+</style>
+<br>
+
+	<center>
+		<h1>La liste des utilisateurs</h1>
+	</center>
+	<br>
+	<div class="mainDiv">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nom utilisateur</th>
+				<th scope="col">Adresse mail</th>
+				<th scope="col">Role</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<th scope="row">{{user.username}}</th>
+					<td>{{user.email}}</td>
+					{%if user.roles[0]=='ROLE_TEACHER' %}
+					<td> enseignant</td>
+					
+					{%elseif user.roles[0]=='ROLE_ADMIN' %}
+					<td> administrateur</td>
+					{%else%}
+					<td> etudiant</td>
+					{%endif%}
+					<td>
+						<a href="{{path('detail_user',{'id':user.id})}}" class="btn btn-success">Details</a>
+				
+						<a href="{{path('edit',{'id':user.id})}}" class="btn btn-secondary">Modifier</a>
+						
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</tbody>
+</table>
+</div>
+{% endblock %}

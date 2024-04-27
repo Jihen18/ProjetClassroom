@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<style>
+.mainDiv{
+	padding: 20px 40px;
+}
+</style>
+<br>
+<center>
+	<h1>Modifier une matière</h1>
+</center>	
+<div class="mainDiv">
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<br>
+	<button type="submit" class="btn btn-info">Modifier !</button>
+	{{ form_end(form) }}
+
+</div>	
+{% endblock %}

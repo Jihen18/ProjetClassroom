@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<style>
+.singleDiv :hover {
+    
+  border-color: #292C6D;
+
+}
+.lastDiv {
+
+}
+.lastDiv :hover {
+  border-color: #292C6D;
+}
+
+.alertDiv{
+  padding: 30px 70px;
+}
+</style>
+<br> <br> 
+
+
+
+
+{%if is_granted('ROLE_ADMIN')%}
+<center>
+<h1>Bienvenue cher Administrateur </h1>
+</center>
+<br>
+<div class="container" >
+<div class="row">
+  <div class="col-lg-4 singleDiv"  >
+<div class="card" style="width: 18rem; background-color: #FFF1BD; "  >
+  <img src="https://www.liseuses.net/wp-content/uploads/2015/12/livres.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h5 class="card-title">Créer des matières</h5>
+    <p class="card-text">Vous pouvez ajouter des nouvelles matieres qui seront ultérieurement consultées par les enseignts et les étudiants.</p>
+    <a href="{{path('ajouter_matiere')}}" class="btn btn-primary">Ajouter une matière</a>
+  </div>
+  </div>
+</div>
+<br>
+
+  <div class="col-lg-4 singleDiv"  >
+<div class="card" style="width: 18rem; background-color: #FFF1BD; "  >
+  <img src="https://www.liseuses.net/wp-content/uploads/2015/12/livres.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h5 class="card-title">Afficher les utilisateurs</h5>
+    <p class="card-text">Vous pouvez accèder aux utilisateurs y compris les enseignts et les administrateurs inscrits au classroom .</p>
+    <a href="{{path('Listusers')}}" class="btn btn-primary">afficher les utilisateurs</a>
+  </div>
+  </div>
+</div>
+
+ <div class="col-lg-4 lastDiv" >
+ 
+<div class="card" style="width: 18rem; background-color: #FFF1BD;">
+  <img src="https://www.liseuses.net/wp-content/uploads/2015/12/livres.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Afficher les matières</h5>
+    <p class="card-text">Vous pouvez acceder à la liste des matieres construites par l'admin en tant que enseignts et etudiants ou profs universitaire </p>
+    <a href="{{path('matiere')}}" class="btn btn-primary">Accèder aux matières</a>
+  </div>
+  </div>
+</div>
+
+
+</div>
+</div>
+{%elseif is_granted('ROLE_TEACHER')%}
+<center>
+<h1>Bienvenue cher Enseignant </h1>
+</center> <br>
+<div class="container" >
+<div class="row">
+ <div class="col-lg-4 lastDiv" >
+ 
+<div class="card" style="width: 18rem; background-color: #FFF1BD;">
+  <img src="https://www.liseuses.net/wp-content/uploads/2015/12/livres.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Afficher les matières</h5>
+    <p class="card-text">Vous pouvez acceder à la liste des matieres construites par l'admin en tant que enseignts et etudiants ou profs universitaire </p>
+    <a href="{{path('matiere')}}" class="btn btn-primary">Accèder aux matières</a>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+{%elseif is_granted('ROLE_STUDENT')%}
+<center>
+<h1>Bienvenue cher Etudiant </h1>
+</center>
+<br>
+<div class="container" >
+<div class="row">
+ <div class="col-lg-4 lastDiv" >
+ 
+<div class="card" style="width: 18rem; background-color: #FFF1BD;">
+  <img src="https://www.liseuses.net/wp-content/uploads/2015/12/livres.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Afficher les matières</h5>
+    <p class="card-text">Vous pouvez acceder à la liste des matieres construites par l'admin en tant que enseignts et etudiants ou profs universitaire </p>
+    <a href="{{path('matiere')}}" class="btn btn-primary">Accèder aux matières</a>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+
+{%else%}
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="alertDiv">
+<div class="alert alert-secondary" role="alert" >
+  <h4 class="alert-heading">Bienvenue !</h4>
+  <p>MyClassroom est un outil de dépôt des supports pédagogiques des enseignants. Cet outil intégre plusieurs fonctionnalités utiles pour les enseignants ainsi que les administrateurs</p>
+  <hr>
+  <p class="mb-0">Pour bénéficier de ces fonctionnalités veuillez d'abord <a href="{{ path('security_login') }}">se connecter.</a> ou <a href="{{path('security_registration')}}"> s'inscrire </a> si vous n'avez pas encore un compte.</p>
+</div>
+</div>
+<center>
+<img src="https://i.pinimg.com/originals/20/9b/e8/209be8b95ef7f87e37f5052f94e4dbf0.png" style="width: 90px;"/>
+</center>
+{%endif%}
+</div>
+</div>
+{% endblock %}

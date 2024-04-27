@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+.singleDiv{
+  margin-top: 30px;
+}
+.singleDiv :hover {
+    
+  border-color: #292C6D;
+
+}
+</style>
+<br>
+	<center>
+		<h1>Les catégories de la matière {{matiereid.nom}}</h1>
+	</center>
+	<br>
+	<div class="container">
+    <div class="row">
+     	
+			{% for categorie in categories %}
+           {%if categorie.matieres.id==matiereid.id%}
+		    <div class="col-lg-4 singleDiv">
+            <div class="card mainCard" style="width: 18rem;">
+            <img src="https://d7ieeqxtzpkza.cloudfront.net/wp-content/uploads/2020/12/education.jpg" class="card-img-top" alt="...">
+				  <div class="card-body">
+    <h5 class="card-title">{{categorie.nom}}</h5>
+    <p class="card-text">{{categorie.descripCat}}</p>
+ 
+				
+    </div>             
+   </div>
+   
+   </div>
+    {%endif%}
+  
+          	{%endfor%}  
+	</div>
+  </div>
+{% endblock %}

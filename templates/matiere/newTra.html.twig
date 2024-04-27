@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<style>
+.mainDiv{
+	padding: 20px 40px;
+}
+</style>
+<br>
+<center>
+	<h1>Déposer un travail</h1>
+</center>
+<div class="mainDiv">
+	{{ form_start(formtr) }}
+	{{ form_widget(formtr) }}
+	<br>
+	<button type="submit" class="btn btn-info">Enregistrer !</button>
+	{{ form_end(formtr) }}
+	</div>
+{% endblock %}

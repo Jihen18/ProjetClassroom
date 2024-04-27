@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<style>
+.mainDiv{
+	padding: 20px 40px;
+}
+</style>
+<br>
+<center>
+	<h1>Créer une nouvelle matière</h1>
+</center>
+<div class="mainDiv">
+	{{ form_start(formmat) }}
+	{{ form_widget(formmat) }}
+	<br>
+	<button type="submit" class="btn btn-info">Enregistrer !</button>
+	{{ form_end(formmat) }}
+</div>	
+{% endblock %}

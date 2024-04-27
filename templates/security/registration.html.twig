@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<style>
+.mainDiv{
+	padding: 20px 40px;
+}
+</style>
+<br>
+<center>
+	<h1>Créer un compte</h1>
+</center>	
+	<div class="mainDiv">
+
+	{{ form_start(form) }}
+
+	{{ form_row(form.username,{'label':'nom utilisateur', 'attr':{'placeholder':'nom'}}) }}
+										
+	{{ form_row(form.email, {'label':'adresse mail', 'attr':{'placeholder':'example@exemple.com'}}) }}
+									
+	{{ form_row(form.password, {'label':'mot de passe','attr':{'placeholder':'******'}})
+						    }}
+	{{ form_row(form.confirmpassword, {'label':'confirmer mot de passe', 'attr':{'placeholder':'******'}}) }}
+
+	<button type="submit" class="btn btn-success">S'inscrire</button>
+	
+	{{ form_end(form) }}
+	<br>
+	
+
+	<br> <br>
+	<p> Si vous avez déjà un compte vous pouvez vous <a href="{{path('security_login')}}" >connecter.</a></p>
+	</div>
+{% endblock %}

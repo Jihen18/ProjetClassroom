@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+.singleDiv{
+  margin-top: 30px;
+}
+.singleDiv :hover {
+    
+  border-color: #292C6D;
+
+}
+.heart{
+  width: 20px;
+}
+
+
+</style>
+
+<br>
+	<center>
+		<h1>Les travaux de la matière {{matiereid.nom}}</h1>
+	</center>
+	<br>
+	<div class="container">
+    <div class="row">
+     	
+			{% for travail in travaux %}
+           {%if travail.matieres.id==matiereid.id%}
+		    <div class="col-lg-4 singleDiv">
+            <div class="card mainCard" style="width: 18rem;">
+            <img src="{{asset('uploads/')~travail.file}}" class="card-img-top" alt="...">
+				  <div class="card-body">
+    <h5 class="card-title">{{travail.nom}}</h5>
+    <p class="card-text">{{travail.description}}</p>
+       
+
+   {% if is_granted('ROLE_STUDENT') %}
+    <a href="{{path('travail_like',{'id':travail.id})}}" class="btn btn-link js-like-link">
+        
+         {%if app.user and travail.isLikedByUser(app.user)%}
+    <i class="fas fa-thumbs-up"></i>
+        {%else%}
+            <i class="far fa-thumbs-up"></i>
+            {%endif%}
+
+              
+       <span class="js-likes">{{travail.likes | length }}</span>
+         <span class="js-label">J'aime </span>
+        </a>
+
+   {%else%}
+
+  {%if is_granted('ROLE_TEACHER')%}
+  <p> <b>   <span class="js-likes">{{travail.likes | length }} likes</span> </b> <p>
+   <a href="{{path('modif_travail',{'id':travail.id})}}">Modifier le travail </a> 
+      
+
+   <br>
+  {%endif%}
+   {%endif%}
+  </div>
+   </div>
+    </div>
+				{%endif%}
+                 
+              
+    
+          	{%endfor%}  
+	</div>
+  </div>
+{% endblock %}

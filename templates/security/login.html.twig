@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<br>
+<style>
+.mainDiv{
+	padding: 20px 40px;
+}
+</style>
+<center>
+	<h1>Se connecter</h1>
+	</center>
+
+
+	<div class="mainDiv">
+	<form action=" {{ path('security_login') }} " method="post">
+		<div class="form-group">
+			<label for="_username">adresse mail</label>
+			<input type="text" placeholder="exemple@exemple.com" required name="_username" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label for="_password">mot de passe</label>
+			<input type="password" placeholder="*******" required name="_password" class="form-control">
+		</div>
+
+		<div class="form-group">
+		<br>
+			<button type="submit" class="btn btn-success">Se connecter !</button>
+			<br> <br>
+			<p> Si vous n'avez pas de compte vous pouvez vous <a href="{{path('security_registration')}}" >inscrire.</a></p>
+		</div>
+	</form>
+</div>
+{% endblock %}
